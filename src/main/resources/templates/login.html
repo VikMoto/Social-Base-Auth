@@ -9,6 +9,9 @@
     <tr><td><a href="/oauth2/authorization/google">Google</a></td></tr>
 </table>
 </div>
+<div>
+    <h4><a th:href="@{/oauth2/authorization/facebook}">Login with Facebook</a></h4>
+</div>
 <div th:if="${param.error}">
     Invalid username and password.
 </div>
