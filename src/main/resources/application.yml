@@ -40,4 +40,4 @@ spring:
 gcp:
   vars:
     admin.user: ${ADMIN_USERNAME:test@gmail.com}
-    admin.password: ${ADMIN_PASSWORD:12345}             - public_profile
+    admin.password: ${ADMIN_PASSWORD:12345}

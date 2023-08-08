@@ -36,7 +36,7 @@ public class UserService {
         log.info("started service:{} setup", UserService.class.getSimpleName());
 
         User user = repo.getUserByUsername(username);
-        System.out.println("userChat = " + user);
+        System.out.println("user = " + user);
 
         if (user == null) {
 
