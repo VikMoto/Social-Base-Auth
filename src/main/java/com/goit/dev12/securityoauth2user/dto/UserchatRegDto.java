@@ -14,18 +14,13 @@ import java.util.Set;
 @Builder
 public class UserchatRegDto {
 
-
     private String username;
-
 
     private String userPic;
 
-
     private String email;
 
-
     private UserChat.Gender gender;
-
 
     private Set<Role> roles;
 
