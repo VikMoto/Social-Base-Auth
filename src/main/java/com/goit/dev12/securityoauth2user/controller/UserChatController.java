@@ -2,6 +2,7 @@ package com.goit.dev12.securityoauth2user.controller;
 
 
 import com.goit.dev12.securityoauth2user.dto.UserchatRegDto;
+import com.goit.dev12.securityoauth2user.user.AuthenticationType;
 import com.goit.dev12.securityoauth2user.user.UserChat;
 import com.goit.dev12.securityoauth2user.user.UserChatRepository;
 import lombok.RequiredArgsConstructor;
@@ -19,8 +20,8 @@ public class UserChatController {
     private final UserChatRepository userChatRepository;
 
     @GetMapping("/list")
-    public Set<UserChat> list() {
-        return new HashSet<>((Collection) userChatRepository.findAll());
+    public List<UserChat> list() {
+        return new ArrayList<>((Collection) userChatRepository.findAll());
     }
 
     @PostMapping(("/registration"))
@@ -30,7 +31,9 @@ public class UserChatController {
                 .email(userchatRegDto.getEmail())
                 .userPic(userchatRegDto.getUserPic())
                 .gender(userchatRegDto.getGender())
+                .enabled(true)
                 .birthday(userchatRegDto.getBirthday())
+                .authType(AuthenticationType.DATABASE)
                 .roles(userchatRegDto.getRoles())
                 .locale(null)
                 .lastVisit(LocalDateTime.now())

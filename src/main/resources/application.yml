@@ -30,12 +30,6 @@ spring:
               - email
               - profile
 
-          facebook:
-            clientId: 1157412981883602
-            clientSecret: 3bc35226ef08982a4a69eda8db483d55
-            scope:
-              - email
-              - public_profile
 
 gcp:
   vars:

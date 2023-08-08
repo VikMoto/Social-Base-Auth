@@ -77,7 +77,7 @@ public class SocialConfig {
 
     http
             .authorizeHttpRequests((requests) -> requests
-                    .requestMatchers("/", "/home").permitAll()
+                    .requestMatchers("/", "/users/registration","/home").permitAll()
                     .anyRequest().authenticated()
             )
             .oauth2Login((login) -> login
@@ -96,7 +96,7 @@ public class SocialConfig {
                             System.out.println("Authentication name: " + authentication.getName());
                             CustomOAuth2User oauthUser = (CustomOAuth2User) authentication.getPrincipal();
                             userDetailService.processOAuthPostLogin(oauthUser.getEmail());
-                            response.sendRedirect("/home");
+                            response.sendRedirect("/**");
                         }
                     }
             ))
@@ -106,7 +106,7 @@ public class SocialConfig {
 //						.loginProcessingUrl("/authentication/login/process") // default is /login
                             .usernameParameter("username")
                             .passwordParameter("password")
-                            .defaultSuccessUrl("/home")
+                            .defaultSuccessUrl("/**")
                             .permitAll()
             )
             .logout((logout) -> logout.permitAll())
