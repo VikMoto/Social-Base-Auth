@@ -46,6 +46,7 @@ public class UserChatService {
                     .email(username)
                     .password(passwordEncoder.encode(password))
                     .roles(Set.of(Role.SUPER_ADMIN,Role.ADMIN,Role.USER))
+                    .enabled(true)
                     .authType(AuthenticationType.DATABASE)
                     .build();
 
