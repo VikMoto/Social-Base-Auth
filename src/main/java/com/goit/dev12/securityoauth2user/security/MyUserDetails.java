@@ -3,7 +3,7 @@ package com.goit.dev12.securityoauth2user.security;
 
 
 import com.goit.dev12.securityoauth2user.user.Role;
-import com.goit.dev12.securityoauth2user.user.User;
+import com.goit.dev12.securityoauth2user.user.UserChat;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -15,15 +15,15 @@ import java.util.Set;
 
 public class MyUserDetails implements UserDetails {
 
-	private User user;
+	private UserChat userChat;
 	
-	public MyUserDetails(User user) {
-		this.user = user;
+	public MyUserDetails(UserChat userChat) {
+		this.userChat = userChat;
 	}
 
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
-		Set<Role> roles = user.getRoles();
+		Set<Role> roles = userChat.getRoles();
 		List<SimpleGrantedAuthority> authorities = new ArrayList<>();
 		
 		for (Role role : roles) {
@@ -35,12 +35,12 @@ public class MyUserDetails implements UserDetails {
 
 	@Override
 	public String getPassword() {
-		return user.getPassword();
+		return userChat.getPassword();
 	}
 
 	@Override
 	public String getUsername() {
-		return user.getUsername();
+		return userChat.getUsername();
 	}
 
 	@Override
@@ -60,7 +60,7 @@ public class MyUserDetails implements UserDetails {
 
 	@Override
 	public boolean isEnabled() {
-		return user.isEnabled();
+		return userChat.isEnabled();
 	}
 
 }

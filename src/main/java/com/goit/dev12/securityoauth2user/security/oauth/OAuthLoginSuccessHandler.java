@@ -2,7 +2,7 @@ package com.goit.dev12.securityoauth2user.security.oauth;
 
 
 
-import com.goit.dev12.securityoauth2user.user.UserService;
+import com.goit.dev12.securityoauth2user.user.UserChatService;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -17,7 +17,7 @@ import java.io.IOException;
 public class OAuthLoginSuccessHandler extends SavedRequestAwareAuthenticationSuccessHandler {
 
 	@Autowired
-	UserService userService;
+	UserChatService userChatService;
 	
 	@Override
 	public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response,
@@ -26,7 +26,7 @@ public class OAuthLoginSuccessHandler extends SavedRequestAwareAuthenticationSuc
 		String oauth2ClientName = oauth2User.getOauth2ClientName();
 		String username = oauth2User.getEmail();
 		
-		userService.updateAuthenticationType(username, oauth2ClientName);
+		userChatService.updateAuthenticationType(username, oauth2ClientName);
 		
 		super.onAuthenticationSuccess(request, response, authentication);
 	}

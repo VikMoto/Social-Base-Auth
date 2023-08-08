@@ -2,7 +2,7 @@ package com.goit.dev12.securityoauth2user.security;
 
 
 
-import com.goit.dev12.securityoauth2user.user.UserService;
+import com.goit.dev12.securityoauth2user.user.UserChatService;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -17,13 +17,13 @@ import java.io.IOException;
 public class DatabaseLoginSuccessHandler extends SavedRequestAwareAuthenticationSuccessHandler {
 
 	@Autowired
-	UserService userService;
+    UserChatService userChatService;
 	
 	@Override
 	public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response,
 										Authentication authentication) throws ServletException, IOException {
 		MyUserDetails userDetails = (MyUserDetails) authentication.getPrincipal();
-		userService.updateAuthenticationType(userDetails.getUsername(), "DATABASE");
+		userChatService.updateAuthenticationType(userDetails.getUsername(), "DATABASE");
 		super.onAuthenticationSuccess(request, response, authentication);
 	}
 

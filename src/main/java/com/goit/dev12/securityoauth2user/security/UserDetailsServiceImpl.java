@@ -4,8 +4,8 @@ package com.goit.dev12.securityoauth2user.security;
 
 import com.goit.dev12.securityoauth2user.user.AuthenticationType;
 import com.goit.dev12.securityoauth2user.user.Role;
-import com.goit.dev12.securityoauth2user.user.User;
-import com.goit.dev12.securityoauth2user.user.UserRepository;
+import com.goit.dev12.securityoauth2user.user.UserChat;
+import com.goit.dev12.securityoauth2user.user.UserChatRepository;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -15,38 +15,38 @@ import java.util.Set;
 public class UserDetailsServiceImpl implements UserDetailsService {
 
 
-	private final UserRepository userRepository;
+	private final UserChatRepository userChatRepository;
 
-	public UserDetailsServiceImpl(UserRepository userRepository) {
-		this.userRepository = userRepository;
+	public UserDetailsServiceImpl(UserChatRepository userChatRepository) {
+		this.userChatRepository = userChatRepository;
 	}
 
 	@Override
 	public UserDetails loadUserByUsername(String username) 
 			throws UsernameNotFoundException {
-		User user = userRepository.getUserByUsername(username);
+		UserChat userChat = userChatRepository.getUserByUsername(username);
 		
-		if (user == null) {
+		if (userChat == null) {
 			throw new UsernameNotFoundException("Could not find user");
 		}
 		
-		return new MyUserDetails(user);
+		return new MyUserDetails(userChat);
 	}
 
     public void processOAuthPostLogin(String username) {
-		User existUser = userRepository.getUserByUsername(username);
+		UserChat existUserChat = userChatRepository.getUserByUsername(username);
 
-		if (existUser == null) {
-			User newUser = new User();
-			newUser.setUsername(username);
-			newUser.setEmail(username);
-			newUser.setAuthType(AuthenticationType.GOOGLE);
-			newUser.setRoles(Set.of(Role.USER));
-			newUser.setEnabled(true);
+		if (existUserChat == null) {
+			UserChat newUserChat = new UserChat();
+			newUserChat.setUsername(username);
+			newUserChat.setEmail(username);
+			newUserChat.setAuthType(AuthenticationType.GOOGLE);
+			newUserChat.setRoles(Set.of(Role.USER));
+			newUserChat.setEnabled(true);
 
-			userRepository.save(newUser);
+			userChatRepository.save(newUserChat);
 
-			System.out.println("Created new user: " + username);
+			System.out.println("Created new userChat: " + username);
 		}
     }
 }

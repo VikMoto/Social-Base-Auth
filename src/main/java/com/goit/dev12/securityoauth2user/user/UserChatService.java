@@ -15,9 +15,9 @@ import static com.goit.dev12.securityoauth2user.security.Constants.ADMIN_USERNAM
 @Slf4j
 @Service
 @Transactional
-public class UserService {
+public class UserChatService {
     @Autowired
-    private UserRepository repo;
+    private UserChatRepository repo;
     private final BCryptPasswordEncoder passwordEncoder;
 
 
@@ -27,21 +27,21 @@ public class UserService {
     @Value(value = "${" + ADMIN_PASSWORD + "}")
     private String password;
 
-    public UserService(BCryptPasswordEncoder passwordEncoder) {
+    public UserChatService(BCryptPasswordEncoder passwordEncoder) {
         this.passwordEncoder = passwordEncoder;
     }
 
     @PostConstruct
     private void setup() {
-        log.info("started service:{} setup", UserService.class.getSimpleName());
+        log.info("started service:{} setup", UserChatService.class.getSimpleName());
 
-        User user = repo.getUserByUsername(username);
-        System.out.println("user = " + user);
+        UserChat userChat = repo.getUserByUsername(username);
+        System.out.println("userChat = " + userChat);
 
-        if (user == null) {
+        if (userChat == null) {
 
 
-            User standartUser = User.builder()
+            UserChat standartUserChat = UserChat.builder()
                     .username(username)
                     .email(username)
                     .password(passwordEncoder.encode(password))
@@ -49,10 +49,10 @@ public class UserService {
                     .authType(AuthenticationType.DATABASE)
                     .build();
 
-            repo.save(standartUser);
+            repo.save(standartUserChat);
 
         }
-        log.info("service:{} setup finished", UserService.class.getSimpleName());
+        log.info("service:{} setup finished", UserChatService.class.getSimpleName());
 
     }
     public void updateAuthenticationType(String username, String oauth2ClientName) {

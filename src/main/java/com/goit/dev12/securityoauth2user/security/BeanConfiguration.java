@@ -1,22 +1,22 @@
 package com.goit.dev12.securityoauth2user.security;
 
 
-import com.goit.dev12.securityoauth2user.user.UserRepository;
+import com.goit.dev12.securityoauth2user.user.UserChatRepository;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
 public class BeanConfiguration {
 
-    private final UserRepository userRepository;
+    private final UserChatRepository userChatRepository;
 
-    public BeanConfiguration(UserRepository userRepository) {
-        this.userRepository = userRepository;
+    public BeanConfiguration(UserChatRepository userChatRepository) {
+        this.userChatRepository = userChatRepository;
     }
 
     @Bean
     public UserDetailsServiceImpl userDetailsService(){
-        return new UserDetailsServiceImpl(userRepository);
+        return new UserDetailsServiceImpl(userChatRepository);
     }
 
 }

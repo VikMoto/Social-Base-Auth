@@ -5,12 +5,12 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
 
-public interface UserRepository extends CrudRepository<User, Long> {
+public interface UserChatRepository extends CrudRepository<UserChat, Long> {
 
-	@Query("SELECT u FROM User u WHERE u.username = :username")
-	public User getUserByUsername(@Param("username") String username);
+	@Query("SELECT u FROM UserChat u WHERE u.username = :username")
+	public UserChat getUserByUsername(@Param("username") String username);
 	
 	@Modifying
-	@Query("UPDATE User u SET u.authType = ?2 WHERE u.username = ?1")
+	@Query("UPDATE UserChat u SET u.authType = ?2 WHERE u.username = ?1")
 	public void updateAuthenticationType(String username, AuthenticationType authType);
 }
